@@ -1,4 +1,4 @@
 import userResolvers from './user';
-import messageResolvers from './message';
+import kudiiResolvers from './kudii';
 
-export default [userResolvers, messageResolvers];
+export default [userResolvers, kudiiResolvers];

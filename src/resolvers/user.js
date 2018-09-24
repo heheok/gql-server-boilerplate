@@ -1,11 +1,22 @@
 export default {
   Query: {
-    users: (parent, args, { models }) => Object.values(models.users),
-    user: (parent, { id }, { models }) => models.users[id],
-    me: (parent, args, { me }) => me,
+    async users(root, input, { UsersAPI }) {
+      const response = await UsersAPI.getUsers(input);
+      return response;
+    },
+    async user(root, input, { UsersAPI }) {
+      const response = await UsersAPI.getUser(input);
+      return response;
+    },
   },
   User: {
-    messages: (user, args, { models }) =>
-      Object.values(models.messages).filter(message => message.userId === user.id),
+    sentKudiies: async (parent, input, { KudiiesAPI }) => {
+      const { id } = parent;
+      return KudiiesAPI.getKudiiBySender({ sender: id });
+    },
+    receivedKudiies: async (parent, input, { KudiiesAPI }) => {
+      const { id } = parent;
+      return KudiiesAPI.getKudiiByReceiver({ receiver: id });
+    },
   },
 };

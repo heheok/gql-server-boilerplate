@@ -1,30 +1,9 @@
-let users = {
-  1: {
-    id: '1',
-    username: 'Robin Wieruch',
-    messageIds: [1],
-  },
-  2: {
-    id: '2',
-    username: 'Dave Davids',
-    messageIds: [2],
-  },
-};
+import UserAPI from './userAPI';
+import KudiiAPI from './kudiiAPI';
 
-let messages = {
-  1: {
-    id: '1',
-    text: 'Hello World',
-    userId: '1',
-  },
-  2: {
-    id: '2',
-    text: 'By World',
-    userId: '2',
-  },
-};
+const getContext = connector => ({
+  UsersAPI: new UserAPI({ connector }),
+  KudiiesAPI: new KudiiAPI({ connector }),
+});
 
-export default {
-  users,
-  messages,
-};
+export default getContext;
